@@ -6,9 +6,11 @@ from django.utils import timezone
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
+    subtitle = models.CharField(max_length=300,default='')
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
+    image_link = models.CharField(max_length=500,default='')
 
     def publish(self):
         self.published_date = timezone.now()

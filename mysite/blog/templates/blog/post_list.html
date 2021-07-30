@@ -1,46 +1,39 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blog d'Italia</title>
-    </head>
-    <body>
-        <header>
-            <h1>Blog Italiano</h1>
-        </header>
-        <p>Ciao a tutti e benvenuti al mio blog di cucina italian!</p>
-        
-    <article>
-        <h2>
-            <a href="https://www.tavolartegusto.it/ricetta/pizza-napoletana-pizza-margherita/">Pizza Napoletana</a>
-            </h2>
-        <time>Publicado em: 28/07/2021 ás 20:45</time>
-        <p>
-            La Pizza napoletana è un piatto tipico della città di Napoli! La pizza tonda sottile e morbida a base di acqua, farina, lievito con il classico cornicione alto e gonfio. Ufficialmente riconosciuta nel 2010 come specialità tradizionale garantita dall’Unione europea e nel 2017 dall’UNESCO come patrimonio immateriale dell’umanità! Insomma, una vera e propria istituzione che nasce intorno al 1720 quando comparivano i primi dischi di pasta conditi con pomodoro, ma solo nel 1889 nacque la più famosa delle pizze napoletane! La Pizza Margherita condita con pomodoro, mozzarella (tradizionalmente fiordilatte) basilico fresco, olio extravergine e sale! Opera del cuoco Raffaele Esposito per onorare la Regina d’Italia Margherita di Savoia, realizzando una pietanza salata con gli stessi colori della bandiera italiana! Volete preparare la Pizza napoletana a casa vostra? Seguite questa Ricetta originale con tutti i consigli , trucchi e foto passo passo e fidatevi di me, otterrete un risultato strepitoso!
-        </p>
-    </article>
-
-   
-
+{% extends 'blog/base.html'%}
+{%block content%}
+ <!-- Page Header-->
+ <header class="masthead" style="background-image:  url('https://d18lkz4dllo6v2.cloudfront.net/cumulus_uploads/entry/2019-03-12/GettyImages-891284194.jpg?w=660')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Cucinando con Atillio</h1>
+                    <span class="subheading">Un blog di cucina italo-brasiliana</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
     {% for post in post_list %}
-        
-        <article>
-            <h2>
-                <a href="">{{post.title}}</a>
-                </h2>
-            <time>Publicado em: {{post.published_date}}</time>
-            <p>
-                {{post.text}}
-                 </p>
-        </article>
-    {% endfor %}    
-    <article>
-        <h2>
-            <a href="https://it.wikipedia.org/wiki/Pizza_siciliana">Pizza Siciliana</a>
-            </h2>
-        <time>Publicado em: 23/07/2021 ás 20:45</time>
-        <p>
-            L'espressione pizza siciliana si riferisce a un insieme di varietà di modi per la preparazione della pizza. La pizza siciliana più conosciuta è lo sfincione originario di Palermo e diffuso in molte zone dell'isola, ma accanto a esso esistono diverse altre varietà di pizze. Le differenze nella preparazione della pizza in Sicilia sono legate alla cultura e alla tradizione locale che, in un'isola vasta come la Sicilia, hanno portato a ricette dalle caratteristiche a volte assai diverse tra loro. Con i fenomeni di emigrazione che hanno toccato la popolazione siciliana all'inizio del XX secolo, alcune ricette sono sbarcate anche in altre nazioni mantenendo in parte le loro caratteristiche originarie, così ad esempio nel New Jersey si indica col termine inglese sicilian pizza la versione italoamericana dello sfincione. </p>
-    </article>
-
-    </body>
-</html>       
+    <!-- Post preview-->
+    <div class="post-preview">
+        <a href="{% url 'post_detail' pk=post.pk %}">
+            <h2 class="post-title">{{post.title}}</h2>
+            
+        </a>
+        <h3 class="post-subtitle">{{post.subtitle}}</h3>
+        <p class="post-meta">
+            Posted by
+            <a href="#!">{{post.author}}</a>
+            on {{post.published_date}}
+        </p>
+    </div>                    
+    <!-- Divider-->
+    {% endfor %}   
+    <hr class="my-4">
+    <!-- Pager-->
+    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+{%endblock%}

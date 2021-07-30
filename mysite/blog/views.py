@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Post
 """
 request =  o que entra (o que o navegador envia)
@@ -11,4 +11,27 @@ def post_list(request):
         request,
         'blog/post_list.html',
         {'post_list':posts}
+    )
+
+def post_detail(request,pk):
+    post = get_object_or_404(Post,pk=pk)
+
+    return render(
+        request,
+        'blog/post_detail.html',
+        {'post':post}
+    )
+
+def contacts(request):
+    return render(
+        request,
+        'blog/contacts.html',
+        {}
+    )
+
+def about(request):
+    return render(
+        request,
+        'blog/about.html',
+        {}
     )
