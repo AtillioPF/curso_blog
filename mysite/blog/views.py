@@ -10,7 +10,7 @@ response = o que o computador/server onde o programa esta responde para o navega
 
 
 def post_list(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(published_date__isnull=False)
     return render(
         request,
         'blog/post_list.html',
