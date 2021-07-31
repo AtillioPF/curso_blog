@@ -47,15 +47,15 @@ def about(request):
 def add_comment(request, pk):
     post_obj = get_object_or_404(Post, pk=pk)
     if request.method == 'POST':
-        #quando o medoto da request é POST
+        # quando o medoto da request é POST
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post_obj
             comment.save()
-            return redirect('post_detail',pk=post_obj.pk)
+            return redirect('post_detail', pk=post_obj.pk)
     else:
-        #quando o metodo da request é get
+        # quando o metodo da request é get
         form = CommentForm()
 
     return render(

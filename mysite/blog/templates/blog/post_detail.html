@@ -17,12 +17,36 @@
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
             <p>{{ post.text|linebreaksbr }}</p>
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+
+
+                <a href="{% url 'add_comment' pk=post.pk %}" class="btn btn-primary">Adicionar comentario</a>
+
+
+            </div>
         </div>
     </div>
-
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-        <a href="{% url 'add_comment' pk=post.pk %}">Adicionar comentario</a>
-    </div>
-
 </div>
+
+<hr>
+{%for comment in post.comments.all%}
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <hr>
+            <h3>{{comment.author}}</h3>
+            <p>{{ comment.text }}</p>
+            <p>{{ comment.created_date }}</p>
+            {% empty %}
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <p>Nenhum comentário</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endfor%}
 {%endblock%}
